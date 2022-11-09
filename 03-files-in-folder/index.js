@@ -7,9 +7,8 @@ readdir(path.join(__dirname, 'secret-folder'), { withFileTypes: true })
 
           if(file.isFile()) {
             stat(path.join(__dirname, 'secret-folder', file.name), (err, stats) => {
-
-              console.log(`${file.name.split('.')[0]} - ${file.name.split('.').at(-1)} - ${stats.size} bytes`);
-
+              if(err) throw err;
+              console.log(`${ file.name.split('.')[0] } - ${ path.extname(path.join(__dirname, 'secret-folder', file.name)).slice(1) } - ${ stats.size } bytes`);
             });
           }
 
